@@ -9,7 +9,7 @@ export function NotebookLayout() {
     <div className="relative h-dvh w-screen overflow-hidden bg-[#FCE7CC] font-sans">
       <NotebookBackground />
 
-      <div className="absolute left-1/2 top-9 z-10 w-[clamp(1180px,88vw,1500px)] -translate-x-[54%]">
+      <div className="absolute left-1/2 top-12 z-10 w-[clamp(1180px,88vw,1500px)] -translate-x-[54%]">
         <NotebookTabs />
 
         <NotebookFrame>
