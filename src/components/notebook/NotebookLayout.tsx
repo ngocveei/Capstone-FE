@@ -1,0 +1,21 @@
+import { Outlet } from 'react-router-dom'
+import { NotebookBackground } from './NotebookBackground'
+import { NotebookFrame } from './NotebookFrame'
+import { NotebookSidebar } from './NotebookSidebar'
+import { NotebookTabs } from './NotebookTabs'
+
+export function NotebookLayout() {
+  return (
+    <div className="relative h-screen w-screen overflow-hidden bg-[#FCE7CC] font-sans">
+      <NotebookBackground />
+
+      <div className="absolute left-1/2 top-[52%] z-10 w-[clamp(1180px,88vw,1500px)] -translate-x-[54%] -translate-y-1/2">
+        <NotebookTabs />
+        <NotebookFrame>
+          <Outlet />
+        </NotebookFrame>
+        <NotebookSidebar />
+      </div>
+    </div>
+  )
+}
