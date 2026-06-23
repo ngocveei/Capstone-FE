@@ -1,84 +1,40 @@
 import { CalendarDays, Clock3, UserRound } from 'lucide-react'
 
-const copy = {
-  attendance: 'Điểm danh',
-  sessions: 'buổi',
-  present: 'Đã có mặt',
-  absent: 'Vắng',
-  leave: 'Nghỉ phép',
-  upcoming: 'Buổi học sắp tới',
-  tomorrow: 'Ngày mai',
-  subject: 'Toán 9A',
-  teacher: 'Cô Lan',
-}
-
 export function HeaderStats() {
   return (
-    <div className="schedule-header-cards">
-      <article className="schedule-card schedule-stat attendance-stat">
-        <div className="stat-heading">
-          <span className="stat-icon">
-            <UserRound size={18} />
-          </span>
-
-          <div className="stat-content">
-            <h2>{copy.attendance}</h2>
-            <strong>
-              18/20 <small>{copy.sessions}</small>
-            </strong>
+    <section className="schedule-stats">
+      <article className="schedule-stat-card">
+        <div className="stat-head">
+          <span><UserRound size={20} /></span>
+          <div>
+            <h2>Điểm danh</h2>
+            <strong>18/20 <small>buổi</small></strong>
           </div>
         </div>
 
-        <div className="progress-label">
-          <b>90%</b>
-        </div>
+        <b className="progress-text">90%</b>
+        <div className="progress-bar"><i /></div>
 
-        <div className="attendance-progress">
-          <span />
-        </div>
-
-        <div className="attendance-numbers">
-          <div>
-            <b>18</b>
-            <span>{copy.present}</span>
-          </div>
-          <div>
-            <b>2</b>
-            <span>{copy.absent}</span>
-          </div>
-          <div>
-            <b>0</b>
-            <span>{copy.leave}</span>
-          </div>
+        <div className="stat-numbers">
+          <p><b>18</b><span>Đã có mặt</span></p>
+          <p><b>2</b><span>Vắng</span></p>
+          <p><b>0</b><span>Nghỉ phép</span></p>
         </div>
       </article>
 
-      <article className="schedule-card schedule-stat next-class-stat">
-        <div className="stat-heading">
-          <span className="stat-icon">
-            <CalendarDays size={18} />
-          </span>
-
-          <div className="stat-content">
-            <h2>{copy.upcoming}</h2>
-          </div>
+      <article className="schedule-stat-card">
+        <div className="stat-head">
+          <span><CalendarDays size={20} /></span>
+          <h2>Buổi học sắp tới</h2>
         </div>
 
-        <div className="next-class-body">
-          <div className="next-row orange">
-            <Clock3 size={14} />
-            <span>{copy.tomorrow}</span>
-          </div>
-
-          <div className="next-row time">
-            <Clock3 size={15} />
-            <strong>19:00 - 20:30</strong>
-          </div>
-
-          <p>{copy.subject}</p>
-          <small>{copy.teacher}</small>
+        <div className="next-class">
+          <p className="orange"><Clock3 size={15} />Ngày mai</p>
+          <strong><Clock3 size={16} />19:00 - 20:30</strong>
+          <b>Toán 9A</b>
+          <small>Cô Lan</small>
         </div>
       </article>
-    </div>
+    </section>
   )
 }

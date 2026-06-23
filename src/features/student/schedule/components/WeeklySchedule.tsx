@@ -10,112 +10,84 @@ const days = [
   ['CHỦ NHẬT', '18/05'],
 ] as const
 
-const hours = [
-  '07:00',
-  '08:00',
-  '09:00',
-  '10:00',
-  '11:00',
-  '12:00',
-  '13:00',
-  '14:00',
-  '15:00',
-  '16:00',
-  '17:00',
-  '18:00',
-  '19:00',
-  '20:00',
-  '21:00',
-  '22:00',
-]
+const hours = ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', "20:00", '21:00', '22:00']
 
 type Lesson = {
   day: number
   start: number
   end: number
-  tone: 'peach' | 'mint'
+  tone: 'peach' | 'yellow' | 'purple' | 'mint'
 }
 
 const lessons: Lesson[] = [
   { day: 0, start: 7.5, end: 9, tone: 'peach' },
+  { day: 0, start: 9.5, end: 11, tone: 'yellow' },
+  { day: 1, start: 13.5, end: 15, tone: 'purple' },
   { day: 2, start: 8, end: 9.5, tone: 'peach' },
   { day: 4, start: 10, end: 11.5, tone: 'mint' },
-  { day: 6, start: 19, end: 20.5, tone: 'peach' },
+  { day: 4, start: 15.5, end: 17, tone: 'mint' },
+  { day: 6, start: 9, end: 10.5, tone: 'peach' },
 ]
 
-const copy = {
-  title: 'Lịch tuần',
-  subject: 'Toán 9A',
-  teacher: 'Cô Lan',
-  lunch: 'Nghỉ trưa 12:00 - 13:00',
-}
-
-const hourHeight = 58
+const hourHeight = 52
 const startHour = 7
 
 const topFor = (hour: number) => `${(hour - startHour) * hourHeight}px`
 const heightFor = (start: number, end: number) => `${(end - start) * hourHeight}px`
 
 const formatHour = (hour: number) => {
-  const wholeHour = Math.floor(hour).toString().padStart(2, '0')
-  return `${wholeHour}:${hour % 1 === 0.5 ? '30' : '00'}`
+  const h = Math.floor(hour).toString().padStart(2, '0')
+  return `${h}:${hour % 1 === 0.5 ? '30' : '00'}`
 }
 
 export function WeeklySchedule() {
   return (
-    <section className="weekly-section">
-      <div className="weekly-card">
-        <h2 className="weekly-title">
-          <CalendarDays size={22} />
-          {copy.title}
-        </h2>
+    <section className="weekly-card">
+      <h2><CalendarDays size={23} />Lịch tuần</h2>
 
-        <div className="weekly-header">
-          <span />
-          {days.map(([name, date]) => (
-            <div key={name}>
-              <b>{name}</b>
-              <span>{date}</span>
+      <div className="week-head">
+        <span />
+        {days.map(([day, date]) => (
+          <div key={day}>
+            <b>{day}</b>
+            <small>{date}</small>
+          </div>
+        ))}
+      </div>
+
+      <div className="week-scroll">
+        <div className="week-body">
+          {hours.map((hour) => (
+            <div className="hour-row" key={hour}>
+              <span>{hour}</span>
             </div>
           ))}
-        </div>
 
-        <div className="weekly-scroll">
-          <div className="weekly-body">
-            {hours.map((hour) => (
-              <div className="weekly-time-row" key={hour}>
-                <span>{hour}</span>
+          <div className="day-columns">
+            {days.map(([day], dayIndex) => (
+              <div className="day-column" key={day}>
+                {lessons
+                  .filter((lesson) => lesson.day === dayIndex)
+                  .map((lesson) => (
+                    <article
+                      className={`lesson ${lesson.tone}`}
+                      key={`${lesson.day}-${lesson.start}`}
+                      style={{
+                        top: topFor(lesson.start),
+                        height: heightFor(lesson.start, lesson.end),
+                      }}
+                    >
+                      <b>Toán 9A</b>
+                      <span>{formatHour(lesson.start)} - {formatHour(lesson.end)}</span>
+                      <small>Cô Lan</small>
+                    </article>
+                  ))}
               </div>
             ))}
 
-            <div className="weekly-day-columns">
-              {days.map(([name], dayIndex) => (
-                <div className="weekly-day-column" key={name}>
-                  {lessons
-                    .filter((lesson) => lesson.day === dayIndex)
-                    .map((lesson) => (
-                      <article
-                        key={`${lesson.day}-${lesson.start}`}
-                        className={`lesson ${lesson.tone}`}
-                        style={{
-                          top: topFor(lesson.start),
-                          height: heightFor(lesson.start, lesson.end),
-                        }}
-                      >
-                        <b>{copy.subject}</b>
-                        <span>
-                          {formatHour(lesson.start)} - {formatHour(lesson.end)}
-                        </span>
-                        <small>{copy.teacher}</small>
-                      </article>
-                    ))}
-                </div>
-              ))}
-
-              <div className="lunch-break" style={{ top: topFor(12) }}>
-                <BookOpen size={16} />
-                <b>{copy.lunch}</b>
-              </div>
+            <div className="lunch" style={{ top: topFor(12) }}>
+              <BookOpen size={17} />
+              <b>Nghỉ trưa 12:00 - 13:00</b>
             </div>
           </div>
         </div>

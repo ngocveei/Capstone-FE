@@ -8,11 +8,8 @@ const notes = [
 
 export function StudyNotes() {
   return (
-    <section className="schedule-card side-card notes-card">
-      <h2 className="schedule-section-title">
-        <ClipboardCheck size={19} />
-        Ghi chú học tập
-      </h2>
+    <section className="side-card notes-card">
+      <h2><ClipboardCheck size={21} />Ghi chú học tập</h2>
 
       <ul>
         {notes.map((note) => (
@@ -26,7 +23,7 @@ export function StudyNotes() {
       </ul>
 
       <button type="button">
-        <Plus size={14} />
+        <Plus size={15} />
         Thêm ghi chú mới...
       </button>
     </section>

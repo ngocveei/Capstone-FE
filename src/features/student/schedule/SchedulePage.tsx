@@ -4,41 +4,31 @@ import { StudyNotes } from './components/StudyNotes'
 import { WeeklySchedule } from './components/WeeklySchedule'
 import './schedule.css'
 
-const copy = {
-  title: 'Lịch học Toán 9A',
-  descLine1: 'Theo dõi thời khóa biểu,',
-  descLine2: 'lịch học hôm nay và các buổi sắp tới.',
-}
-
 export default function SchedulePage() {
   return (
     <div className="schedule-page">
-      <div className="schedule-inner">
-        <header className="schedule-header">
-          <div className="schedule-title-block">
-            <h1 className="schedule-title">{copy.title}</h1>
-            <p className="schedule-desc">
-              {copy.descLine1}
-              <br />
-              {copy.descLine2}
-            </p>
-            <span className="schedule-underline" />
-          </div>
+      <header className="schedule-header">
+        <div>
+          <span className="schedule-eyebrow">TRANG HỌC SINH</span>
+          <h1>Lịch học Toán 9A</h1>
+          <p>
+            Theo dõi thời khóa biểu,
+            <br />
+            lịch học hôm nay và các buổi sắp tới.
+          </p>
+        </div>
 
-          <HeaderStats />
-        </header>
+        <HeaderStats />
+      </header>
 
-        <main className="schedule-main">
-          <div className="schedule-left-column">
-            <WeeklySchedule />
-          </div>
+      <main className="schedule-main">
+        <WeeklySchedule />
 
-          <aside className="schedule-right-column">
-            <MonthlyCalendar />
-            <StudyNotes />
-          </aside>
-        </main>
-      </div>
+        <aside className="schedule-side">
+          <MonthlyCalendar />
+          <StudyNotes />
+        </aside>
+      </main>
     </div>
   )
 }

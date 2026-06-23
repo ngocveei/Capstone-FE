@@ -1,7 +1,6 @@
 import { CalendarDays, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const weekDays = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN']
-
 const dates = [
   29, 30, 1, 2, 3, 4, 5,
   6, 7, 8, 9, 10, 11, 12,
@@ -12,11 +11,8 @@ const dates = [
 
 export function MonthlyCalendar() {
   return (
-    <section className="schedule-card side-card month-card">
-      <h2 className="schedule-section-title">
-        <CalendarDays size={19} />
-        Lịch tháng
-      </h2>
+    <section className="side-card month-card">
+      <h2><CalendarDays size={21} />Lịch tháng</h2>
 
       <div className="month-nav">
         <ChevronLeft size={17} />
@@ -25,9 +21,7 @@ export function MonthlyCalendar() {
       </div>
 
       <div className="month-grid month-days">
-        {weekDays.map((day) => (
-          <b key={day}>{day}</b>
-        ))}
+        {weekDays.map((day) => <b key={day}>{day}</b>)}
       </div>
 
       <div className="month-grid month-dates">
