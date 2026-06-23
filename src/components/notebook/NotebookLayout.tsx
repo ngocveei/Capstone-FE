@@ -6,14 +6,16 @@ import { NotebookTabs } from './NotebookTabs'
 
 export function NotebookLayout() {
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-[#FCE7CC] font-sans">
+    <div className="relative h-dvh w-screen overflow-hidden bg-[#FCE7CC] font-sans">
       <NotebookBackground />
 
-      <div className="absolute left-1/2 top-[52%] z-10 w-[clamp(1180px,88vw,1500px)] -translate-x-[54%] -translate-y-1/2">
+      <div className="absolute left-1/2 top-9 z-10 w-[clamp(1180px,88vw,1500px)] -translate-x-[54%]">
         <NotebookTabs />
+
         <NotebookFrame>
           <Outlet />
         </NotebookFrame>
+
         <NotebookSidebar />
       </div>
     </div>
